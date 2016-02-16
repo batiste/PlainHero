@@ -6,8 +6,11 @@ var new_game
 var exit
 var buttons
 var game_node
+var fullscreen
 var ui
 var title
+var full = false
+
 
 func _ready():
 	var root = get_node("/root")
@@ -15,8 +18,10 @@ func _ready():
 	ui = get_node("UI")
 	buttons = get_node("UI/Buttons")
 	new_game = get_node("UI/Buttons/NewGame")
+	fullscreen = get_node("UI/Buttons/FullScreen")
 	exit = get_node("UI/Buttons/Exit")
 	title = get_node("UI/Title")
+	fullscreen.connect("pressed", self, "_on_FullScreen_pressed")
 	new_game.connect("pressed", self, "_on_NewGame_pressed")
 	exit.connect("pressed", self, "_on_Exit_pressed")
 	
@@ -48,3 +53,13 @@ func _on_NewGame_pressed():
 	buttons.hide()
 	title.hide()
 	new_game.set_text("Continue")
+	
+func _on_FullScreen_pressed():
+	if full:
+		OS.set_window_fullscreen(false)
+		fullscreen.set_text("Full screen")
+		full = false
+	else:
+		OS.set_window_fullscreen(true)
+		fullscreen.set_text("Windowed")
+		full = true
