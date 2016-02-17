@@ -34,7 +34,7 @@ func _input(event):
 		if(current_game):
 			current_game.get_tree().set_pause(true)
 			current_game.set_opacity(0.5)
-			buttons.show()
+			ui.show()
 			exit.set_process_input(true)
 			title.show()
 		else:
@@ -50,8 +50,7 @@ func _on_NewGame_pressed():
 	else:
 		current_game.get_tree().set_pause(false)
 		current_game.set_opacity(1.0)
-	buttons.hide()
-	title.hide()
+	ui.hide()
 	new_game.set_text("Continue")
 	
 func _on_FullScreen_pressed():
