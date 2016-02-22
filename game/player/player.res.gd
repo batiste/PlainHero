@@ -54,10 +54,13 @@ func update_idle(direction):
 	update('idle-' + get_anim_direction(direction))
 	
 func update(anim_name):
-	if not currentAnimation.canInterrupt():
-		return false
+	#if not currentAnimation.canInterrupt():
+	#	return false
 	hideAll()
 	var anim = animations[anim_name]
+	var player = anim.get_node("AnimationPlayer")
+	if player:
+		player.play()
 	currentAnimation = anim
 	anim.set_pos(Vector2(-17, -53))
 	anim.show()
