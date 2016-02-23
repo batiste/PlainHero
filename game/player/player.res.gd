@@ -58,9 +58,9 @@ func update(anim_name):
 	#	return false
 	hideAll()
 	var anim = animations[anim_name]
-	var player = anim.get_node("AnimationPlayer")
-	if player:
-		player.play()
+	#var player = anim.get_node("AnimationPlayer")
+	#if player:
+	#		player.play()
 	currentAnimation = anim
 	anim.set_pos(Vector2(-17, -53))
 	anim.show()
