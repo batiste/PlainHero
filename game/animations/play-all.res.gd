@@ -1,4 +1,4 @@
-extends AnimatedSprite
+ extends AnimatedSprite
 
 var tempElapsed = 0
 var nbFrames = 0

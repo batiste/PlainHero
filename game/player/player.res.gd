@@ -1,37 +1,17 @@
 extends Node2D
 
-var walkUp
-var idleFront
-var walkDown
-
-var animations = {}
-var currentAnimation
+var animations
+var weapon
 
 func _ready():
-	currentAnimation = get_node("idle-front")
+	animations = get_node("animations/AnimationPlayer")
+	weapon = get_node("animations/weapon")
+	animations.set_active(true)
+	set_process(true)
 	
-	animations["walk-back"] = get_node("walk-up")
-	animations["walk-front"] = get_node("walk-down")
-	animations["walk-left"] = get_node("walk-left")
-	animations["walk-right"] = get_node("walk-right")
-	
-	animations["attack-left"] = get_node("attack-left")
-	animations["attack-right"] = get_node("attack-right")
-	animations["attack-front"] = get_node("attack-front")
-	animations["attack-back"] = get_node("attack-back")
-	
-	animations["idle-front"] = get_node("idle-front")
-	animations["idle-left"] = get_node("idle-front")
-	animations["idle-right"] = get_node("idle-front")
-	animations["idle-back"] = get_node("idle-front")
-	
-	var node = get_node("walk-up")
-	
-	hideAll()
-	
-func hideAll():
-	for key in animations:
-		animations[key].hide()
+func change_weapon():
+	var hammer = Ressource.load("misc/weapons/dummy-hammer2")
+	weapon.set_texture(hammer)
 	
 func get_anim_direction(direction):
 	if direction.x < 0:
@@ -51,19 +31,16 @@ func update_walk(direction):
 	update('walk-' + get_anim_direction(direction))
 
 func update_idle(direction):
-	update('idle-' + get_anim_direction(direction))
+	update('idle-front')
 	
 func update(anim_name):
-	#if not currentAnimation.canInterrupt():
-	#	return false
-	hideAll()
-	var anim = animations[anim_name]
-	if currentAnimation != anim:
-		var player = anim.get_node("AnimationPlayer")
-		if player:
-			player.seek(0)
+	
+	var current = animations.get_current_animation()
+	if current.basename() == anim_name:
+		return
 		
-	currentAnimation = anim
-	anim.set_pos(Vector2(-17, -53))
-	anim.show()
+	#var anim = animations.get_animation(anim_name)
+	
+	#animations.set_current_animation(anim_name)
+	animations.play(anim_name)
 	

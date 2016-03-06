@@ -37,6 +37,9 @@ func _input(event):
 			ui.show()
 			exit.set_process_input(true)
 			title.show()
+			var camera = current_game.get_node("Camera2D")
+			var rect = current_game.get_viewport_rect()
+			ui.set_pos(camera.get_camera_pos() - (rect.size / 2))
 		else:
 			get_tree().quit()
 
