@@ -6,11 +6,9 @@ var weapon
 func _ready():
 	animations = get_node("animations/AnimationPlayer")
 	weapon = get_node("animations/weapon")
-	animations.set_active(true)
-	set_process(true)
 	
 func change_weapon():
-	var hammer = Ressource.load("misc/weapons/dummy-hammer2")
+	var hammer = ResourceLoader.load("misc/weapons/dummy-hammer2")
 	weapon.set_texture(hammer)
 	
 func get_anim_direction(direction):
