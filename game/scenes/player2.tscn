@@ -1,23 +1,23 @@
-[gd_scene load_steps=55 format=1]
+[gd_scene load_steps=56 format=1]
 
 [ext_resource path="res://player/player.res.gd" type="Script" id=1]
-[ext_resource path="res://player/idle-front/idle-front-0.tex" type="Texture" id=2]
-[ext_resource path="res://misc/weapons/dummy-sword.tex" type="Texture" id=3]
-[ext_resource path="res://player/attack/back/attack_back-0.tex" type="Texture" id=4]
-[ext_resource path="res://player/attack/back/attack_back-1.tex" type="Texture" id=5]
-[ext_resource path="res://player/attack/back/attack_back-2.tex" type="Texture" id=6]
-[ext_resource path="res://player/attack/back/attack_back-3.tex" type="Texture" id=7]
-[ext_resource path="res://player/attack/back/attack_back-4.tex" type="Texture" id=8]
-[ext_resource path="res://player/attack/front/attack_front-0.tex" type="Texture" id=9]
-[ext_resource path="res://player/attack/front/attack_front-1.tex" type="Texture" id=10]
-[ext_resource path="res://player/attack/front/attack_front-2.tex" type="Texture" id=11]
-[ext_resource path="res://player/attack/front/attack_front-3.tex" type="Texture" id=12]
-[ext_resource path="res://player/attack/front/attack_front-4.tex" type="Texture" id=13]
-[ext_resource path="res://player/attack/side2/side-attack0000.tex" type="Texture" id=14]
-[ext_resource path="res://player/attack/side2/side-attack0001.tex" type="Texture" id=15]
-[ext_resource path="res://player/attack/side2/side-attack0002.tex" type="Texture" id=16]
-[ext_resource path="res://player/attack/side2/side-attack0003.tex" type="Texture" id=17]
-[ext_resource path="res://player/attack/side2/side-attack0004.tex" type="Texture" id=18]
+[ext_resource path="res://player/attack/side2/side-attack0000.tex" type="Texture" id=2]
+[ext_resource path="res://player/attack/side2/side-attack0001.tex" type="Texture" id=3]
+[ext_resource path="res://player/attack/side2/side-attack0002.tex" type="Texture" id=4]
+[ext_resource path="res://player/attack/side2/side-attack0003.tex" type="Texture" id=5]
+[ext_resource path="res://player/attack/side2/side-attack0004.tex" type="Texture" id=6]
+[ext_resource path="res://misc/weapons/dummy-sword.tex" type="Texture" id=7]
+[ext_resource path="res://player/attack/back/attack_back-0.tex" type="Texture" id=8]
+[ext_resource path="res://player/attack/back/attack_back-1.tex" type="Texture" id=9]
+[ext_resource path="res://player/attack/back/attack_back-2.tex" type="Texture" id=10]
+[ext_resource path="res://player/attack/back/attack_back-3.tex" type="Texture" id=11]
+[ext_resource path="res://player/attack/back/attack_back-4.tex" type="Texture" id=12]
+[ext_resource path="res://player/attack/front/attack_front-0.tex" type="Texture" id=13]
+[ext_resource path="res://player/attack/front/attack_front-1.tex" type="Texture" id=14]
+[ext_resource path="res://player/attack/front/attack_front-2.tex" type="Texture" id=15]
+[ext_resource path="res://player/attack/front/attack_front-3.tex" type="Texture" id=16]
+[ext_resource path="res://player/attack/front/attack_front-4.tex" type="Texture" id=17]
+[ext_resource path="res://player/idle-front/idle-front-0.tex" type="Texture" id=18]
 [ext_resource path="res://player/walk-up/walk-up-0.tex" type="Texture" id=19]
 [ext_resource path="res://player/walk-up/walk-up-1.tex" type="Texture" id=20]
 [ext_resource path="res://player/walk-up/walk-up-2.tex" type="Texture" id=21]
@@ -38,13 +38,13 @@
 [ext_resource path="res://player/walk-side/walk_side-5.tex" type="Texture" id=36]
 [ext_resource path="res://player/walk-side/walk_side-6.tex" type="Texture" id=37]
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=6]
 
-frames = [ ExtResource( 2 ) ]
+frames = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [sub_resource type="SpriteFrames" id=2]
 
-frames = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ]
+frames = [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ]
 
 [sub_resource type="Animation" id=3]
 
@@ -79,7 +79,7 @@ tracks/5/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArra
 
 [sub_resource type="SpriteFrames" id=4]
 
-frames = [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ]
+frames = [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ]
 
 [sub_resource type="Animation" id=5]
 
@@ -89,7 +89,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("weapon:transform/pos")
 tracks/0/interp = 1
-tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1 ), "values":[ Vector2( -4.16585, -42.6857 ), Vector2( -3.80736, -49.4969 ), Vector2( -2.88963, -49.1833 ), Vector2( 8.38116, -16.5162 ), Vector2( 12.3245, -8.62953 ), Vector2( 12.675, -9.80535 ), Vector2( -7.03372, -16.1577 ) ] }
+tracks/0/keys = { "cont":true, "times":FloatArray( 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 1.2 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1 ), "values":[ Vector2( -3.80736, -49.4969 ), Vector2( -2.88963, -49.1833 ), Vector2( 8.38116, -16.5162 ), Vector2( 12.3245, -8.62953 ), Vector2( 12.675, -9.80535 ), Vector2( -7.03372, -16.1577 ), Vector2( -4.16585, -42.6857 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("weapon:transform/rot")
 tracks/1/interp = 1
@@ -106,10 +106,6 @@ tracks/4/type = "value"
 tracks/4/path = NodePath("player:flip_h")
 tracks/4/interp = 1
 tracks/4/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ false ] }
-
-[sub_resource type="SpriteFrames" id=6]
-
-frames = [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ]
 
 [sub_resource type="Animation" id=7]
 
@@ -136,10 +132,18 @@ tracks/4/type = "value"
 tracks/4/path = NodePath("player:flip_h")
 tracks/4/interp = 1
 tracks/4/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ false ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("hitbox/shape:transform/pos")
+tracks/5/interp = 1
+tracks/5/keys = { "cont":true, "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "values":[ Vector2( -39.528, -9.75024 ) ] }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"hit" } ] }
 
 [sub_resource type="SpriteFrames" id=8]
 
-frames = [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ]
+frames = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [sub_resource type="Animation" id=9]
 
@@ -166,6 +170,10 @@ tracks/4/type = "value"
 tracks/4/path = NodePath("weapon:transform/rot")
 tracks/4/interp = 1
 tracks/4/keys = { "cont":true, "times":FloatArray( 0, 0.2, 0.3, 0.4, 0.6, 0.8 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "values":[ 0.0, 131.687, -48.1846, -90.8981, -113.883, -113.883 ] }
+
+[sub_resource type="SpriteFrames" id=10]
+
+frames = [ ExtResource( 18 ) ]
 
 [sub_resource type="Animation" id=11]
 
@@ -323,24 +331,31 @@ tracks/5/path = NodePath("player:frame")
 tracks/5/interp = 1
 tracks/5/keys = { "cont":false, "times":FloatArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "values":[ 0, 1, 2, 3, 4, 5 ] }
 
+[sub_resource type="RectangleShape2D" id=19]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
 [node name="Node2D" type="Node2D"]
 
 script/script = ExtResource( 1 )
-__meta__ = { "__editor_plugin_screen__":"Script" }
+__meta__ = { "__editor_plugin_screen__":"2D", "_edit_lock_":true }
 
 [node name="animations" type="Node2D" parent="."]
+
+__meta__ = { "_edit_lock_":true }
 
 [node name="player" type="AnimatedSprite" parent="animations"]
 
 transform/pos = Vector2( -1.36038, -21.766 )
-frames = SubResource( 10 )
+frames = SubResource( 6 )
+frame = 4
 
 [node name="weapon" type="Sprite" parent="animations"]
 
-transform/pos = Vector2( 7.78926, -16.0517 )
-transform/rot = -3.08569
+transform/pos = Vector2( 17.4004, -23.3201 )
 transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 7 )
 offset = Vector2( -0.14328, -43.135 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="animations"]
@@ -361,5 +376,22 @@ playback/active = true
 playback/speed = 2.0
 blend_times = [  ]
 autoplay = "idle-front"
+
+[node name="hitbox" type="KinematicBody2D" parent="animations"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 19 )
+shapes/0/transform = Matrix32( 1, -0, 0, 1, -39.528, -9.75024 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+
+[node name="shape" type="CollisionShape2D" parent="animations/hitbox"]
+
+transform/pos = Vector2( -39.528, -9.75024 )
+shape = SubResource( 19 )
+trigger = false
+_update_shape_index = 0
 
 

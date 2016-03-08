@@ -2,13 +2,25 @@ extends Node2D
 
 var animations
 var weapon
+var hitbox
 
 func _ready():
 	animations = get_node("animations/AnimationPlayer")
 	weapon = get_node("animations/weapon")
+	#change_weapon()
+	hitbox = get_node("animations/hitbox")
+	#set_process(true)
+	
+func _process(delta):
+	pass
+	
+func hit():
+	print("hit")
+	if(hitbox.is_colliding()):
+		print("boum")
 	
 func change_weapon():
-	var hammer = ResourceLoader.load("misc/weapons/dummy-hammer2")
+	var hammer = ResourceLoader.load("misc/weapons/dummy-hammer2.tex")
 	weapon.set_texture(hammer)
 	
 func get_anim_direction(direction):
@@ -37,8 +49,5 @@ func update(anim_name):
 	if current.basename() == anim_name:
 		return
 		
-	#var anim = animations.get_animation(anim_name)
-	
-	#animations.set_current_animation(anim_name)
 	animations.play(anim_name)
 	
