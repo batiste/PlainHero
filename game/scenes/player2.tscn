@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=1]
+[gd_scene load_steps=57 format=1]
 
 [ext_resource path="res://player/player.res.gd" type="Script" id=1]
 [ext_resource path="res://player/attack/side2/side-attack0000.tex" type="Texture" id=2]
@@ -133,7 +133,7 @@ tracks/4/path = NodePath("player:flip_h")
 tracks/4/interp = 1
 tracks/4/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ false ] }
 tracks/5/type = "value"
-tracks/5/path = NodePath("hitbox/shape:transform/pos")
+tracks/5/path = NodePath("../weaponbox/shape:transform/pos")
 tracks/5/interp = 1
 tracks/5/keys = { "cont":true, "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "values":[ Vector2( -39.528, -9.75024 ) ] }
 tracks/6/type = "method"
@@ -336,10 +336,15 @@ tracks/5/keys = { "cont":false, "times":FloatArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ), 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
+[sub_resource type="RectangleShape2D" id=20]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
 [node name="Node2D" type="Node2D"]
 
 script/script = ExtResource( 1 )
-__meta__ = { "__editor_plugin_screen__":"2D", "_edit_lock_":true }
+__meta__ = { "__editor_plugin_screen__":"Script", "_edit_lock_":true }
 
 [node name="animations" type="Node2D" parent="."]
 
@@ -349,11 +354,12 @@ __meta__ = { "_edit_lock_":true }
 
 transform/pos = Vector2( -1.36038, -21.766 )
 frames = SubResource( 6 )
-frame = 4
+frame = 2
 
 [node name="weapon" type="Sprite" parent="animations"]
 
-transform/pos = Vector2( 17.4004, -23.3201 )
+transform/pos = Vector2( -17.8098, -9.67618 )
+transform/rot = 117.438
 transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 7 )
 offset = Vector2( -0.14328, -43.135 )
@@ -377,20 +383,40 @@ playback/speed = 2.0
 blend_times = [  ]
 autoplay = "idle-front"
 
-[node name="hitbox" type="KinematicBody2D" parent="animations"]
+[node name="weaponbox" type="Area2D" parent="."]
 
 input/pickable = false
 shapes/0/shape = SubResource( 19 )
 shapes/0/transform = Matrix32( 1, -0, 0, 1, -39.528, -9.75024 )
 shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
 
-[node name="shape" type="CollisionShape2D" parent="animations/hitbox"]
+[node name="shape" type="CollisionShape2D" parent="weaponbox"]
 
 transform/pos = Vector2( -39.528, -9.75024 )
 shape = SubResource( 19 )
+trigger = false
+_update_shape_index = 0
+
+[node name="collectbox" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 20 )
+shapes/0/transform = Matrix32( 1.94599, -0, 0, 2.28935, -1.86075, -20.3949 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collectbox"]
+
+transform/pos = Vector2( -1.86075, -20.3949 )
+transform/scale = Vector2( 1.94599, 2.28935 )
+shape = SubResource( 20 )
 trigger = false
 _update_shape_index = 0
 

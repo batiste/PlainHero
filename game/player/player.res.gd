@@ -2,22 +2,31 @@ extends Node2D
 
 var animations
 var weapon
-var hitbox
+var weaponbox
+var weapon_damage = 2
+var collectbox
 
 func _ready():
 	animations = get_node("animations/AnimationPlayer")
 	weapon = get_node("animations/weapon")
 	#change_weapon()
-	hitbox = get_node("animations/hitbox")
-	#set_process(true)
+	weaponbox = get_node("weaponbox")
+	collectbox = get_node("collectbox")
+	set_process(true)
 	
 func _process(delta):
-	pass
+	for body in collectbox.get_overlapping_bodies():
+		if(body.has_method("collect")):
+			body.collect()
+		
 	
 func hit():
-	print("hit")
-	if(hitbox.is_colliding()):
-		print("boum")
+	for body in weaponbox.get_overlapping_bodies():
+		if(body.has_method("take_damage")):
+			body.take_damage(weapon_damage, self)
+	for body in weaponbox.get_overlapping_areas():
+		if(body.has_method("take_damage")):
+			body.take_damage(weapon_damage, self)
 	
 func change_weapon():
 	var hammer = ResourceLoader.load("misc/weapons/dummy-hammer2.tex")
