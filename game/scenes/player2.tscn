@@ -1,22 +1,22 @@
 [gd_scene load_steps=57 format=1]
 
 [ext_resource path="res://player/player.res.gd" type="Script" id=1]
-[ext_resource path="res://player/attack/side2/side-attack0000.tex" type="Texture" id=2]
-[ext_resource path="res://player/attack/side2/side-attack0001.tex" type="Texture" id=3]
-[ext_resource path="res://player/attack/side2/side-attack0002.tex" type="Texture" id=4]
-[ext_resource path="res://player/attack/side2/side-attack0003.tex" type="Texture" id=5]
-[ext_resource path="res://player/attack/side2/side-attack0004.tex" type="Texture" id=6]
+[ext_resource path="res://player/attack/front/attack_front-0.tex" type="Texture" id=2]
+[ext_resource path="res://player/attack/front/attack_front-1.tex" type="Texture" id=3]
+[ext_resource path="res://player/attack/front/attack_front-2.tex" type="Texture" id=4]
+[ext_resource path="res://player/attack/front/attack_front-3.tex" type="Texture" id=5]
+[ext_resource path="res://player/attack/front/attack_front-4.tex" type="Texture" id=6]
 [ext_resource path="res://misc/weapons/dummy-sword.tex" type="Texture" id=7]
 [ext_resource path="res://player/attack/back/attack_back-0.tex" type="Texture" id=8]
 [ext_resource path="res://player/attack/back/attack_back-1.tex" type="Texture" id=9]
 [ext_resource path="res://player/attack/back/attack_back-2.tex" type="Texture" id=10]
 [ext_resource path="res://player/attack/back/attack_back-3.tex" type="Texture" id=11]
 [ext_resource path="res://player/attack/back/attack_back-4.tex" type="Texture" id=12]
-[ext_resource path="res://player/attack/front/attack_front-0.tex" type="Texture" id=13]
-[ext_resource path="res://player/attack/front/attack_front-1.tex" type="Texture" id=14]
-[ext_resource path="res://player/attack/front/attack_front-2.tex" type="Texture" id=15]
-[ext_resource path="res://player/attack/front/attack_front-3.tex" type="Texture" id=16]
-[ext_resource path="res://player/attack/front/attack_front-4.tex" type="Texture" id=17]
+[ext_resource path="res://player/attack/side2/side-attack0000.tex" type="Texture" id=13]
+[ext_resource path="res://player/attack/side2/side-attack0001.tex" type="Texture" id=14]
+[ext_resource path="res://player/attack/side2/side-attack0002.tex" type="Texture" id=15]
+[ext_resource path="res://player/attack/side2/side-attack0003.tex" type="Texture" id=16]
+[ext_resource path="res://player/attack/side2/side-attack0004.tex" type="Texture" id=17]
 [ext_resource path="res://player/idle-front/idle-front-0.tex" type="Texture" id=18]
 [ext_resource path="res://player/walk-up/walk-up-0.tex" type="Texture" id=19]
 [ext_resource path="res://player/walk-up/walk-up-1.tex" type="Texture" id=20]
@@ -38,7 +38,7 @@
 [ext_resource path="res://player/walk-side/walk_side-5.tex" type="Texture" id=36]
 [ext_resource path="res://player/walk-side/walk_side-6.tex" type="Texture" id=37]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=4]
 
 frames = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
@@ -76,10 +76,18 @@ tracks/5/type = "value"
 tracks/5/path = NodePath("player:flip_h")
 tracks/5/interp = 1
 tracks/5/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ false ] }
-
-[sub_resource type="SpriteFrames" id=4]
-
-frames = [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ]
+tracks/6/type = "value"
+tracks/6/path = NodePath("../weaponbox/shape:transform/pos")
+tracks/6/interp = 1
+tracks/6/keys = { "cont":true, "times":FloatArray( 0.6 ), "transitions":FloatArray( 1 ), "values":[ Vector2( 8.88529, -32.1484 ) ] }
+tracks/7/type = "method"
+tracks/7/path = NodePath("..")
+tracks/7/interp = 1
+tracks/7/keys = { "times":FloatArray( 0.6, 0.8 ), "transitions":FloatArray( 1, 1 ), "values":[ { "args":[  ], "method":"hit" }, { "args":[  ], "method":"hit" } ] }
+tracks/8/type = "value"
+tracks/8/path = NodePath("../weaponbox/shape:transform/scale")
+tracks/8/interp = 1
+tracks/8/keys = { "cont":true, "times":FloatArray( 0.6 ), "transitions":FloatArray( 1 ), "values":[ Vector2( 2.90042, 2.40799 ) ] }
 
 [sub_resource type="Animation" id=5]
 
@@ -106,8 +114,24 @@ tracks/4/type = "value"
 tracks/4/path = NodePath("player:flip_h")
 tracks/4/interp = 1
 tracks/4/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ false ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("../weaponbox/shape:transform/pos")
+tracks/5/interp = 1
+tracks/5/keys = { "cont":true, "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ Vector2( 13.6238, -15.1907 ) ] }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/keys = { "times":FloatArray( 0.4, 0.6 ), "transitions":FloatArray( 1, 1 ), "values":[ { "args":[  ], "method":"hit" }, { "args":[  ], "method":"hit" } ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("../weaponbox/shape:transform/scale")
+tracks/7/interp = 1
+tracks/7/keys = { "cont":true, "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ Vector2( 2.06956, 2.45967 ) ] }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="SpriteFrames" id=1]
+
+frames = [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ]
+
+[sub_resource type="Animation" id=6]
 
 length = 1.0
 loop = true
@@ -115,7 +139,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("player:frames")
 tracks/0/interp = 1
-tracks/0/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 6 ) ] }
+tracks/0/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 1 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("weapon:transform/rot")
 tracks/1/interp = 1
@@ -135,17 +159,21 @@ tracks/4/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArra
 tracks/5/type = "value"
 tracks/5/path = NodePath("../weaponbox/shape:transform/pos")
 tracks/5/interp = 1
-tracks/5/keys = { "cont":true, "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "values":[ Vector2( -39.528, -9.75024 ) ] }
+tracks/5/keys = { "cont":true, "times":FloatArray( 0.4, 0.6 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -34.6513, -9.75024 ), Vector2( -32.7005, -10.7256 ) ] }
 tracks/6/type = "method"
 tracks/6/path = NodePath("..")
 tracks/6/interp = 1
-tracks/6/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"hit" } ] }
+tracks/6/keys = { "times":FloatArray( 0.4, 0.6 ), "transitions":FloatArray( 1, 1 ), "values":[ { "args":[  ], "method":"hit" }, { "args":[  ], "method":"hit" } ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("../weaponbox/shape:transform/scale")
+tracks/7/interp = 1
+tracks/7/keys = { "cont":true, "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ Vector2( 1.24637, 1.57903 ) ] }
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=7]
 
-frames = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+frames = [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 
 length = 1.0
 loop = true
@@ -153,7 +181,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("player:frames")
 tracks/0/interp = 1
-tracks/0/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 8 ) ] }
+tracks/0/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 7 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("player:frame")
 tracks/1/interp = 1
@@ -170,12 +198,24 @@ tracks/4/type = "value"
 tracks/4/path = NodePath("weapon:transform/rot")
 tracks/4/interp = 1
 tracks/4/keys = { "cont":true, "times":FloatArray( 0, 0.2, 0.3, 0.4, 0.6, 0.8 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "values":[ 0.0, 131.687, -48.1846, -90.8981, -113.883, -113.883 ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("../weaponbox/shape:transform/pos")
+tracks/5/interp = 1
+tracks/5/keys = { "cont":true, "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ Vector2( 28.8023, -13.1356 ) ] }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/keys = { "times":FloatArray( 0.4, 0.6 ), "transitions":FloatArray( 1, 1 ), "values":[ { "args":[  ], "method":"hit" }, { "args":[  ], "method":"hit" } ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("../weaponbox/shape:transform/scale")
+tracks/7/interp = 1
+tracks/7/keys = { "cont":true, "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ Vector2( 1.28069, 1.57903 ) ] }
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=9]
 
 frames = [ ExtResource( 18 ) ]
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=10]
 
 length = 4.0
 loop = true
@@ -195,7 +235,7 @@ tracks/2/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArra
 tracks/3/type = "value"
 tracks/3/path = NodePath("player:frames")
 tracks/3/interp = 1
-tracks/3/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 10 ) ] }
+tracks/3/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 9 ) ] }
 tracks/4/type = "value"
 tracks/4/path = NodePath("player:flip_h")
 tracks/4/interp = 1
@@ -205,11 +245,11 @@ tracks/5/path = NodePath("weapon:visibility/behind_parent")
 tracks/5/interp = 1
 tracks/5/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ false ] }
 
-[sub_resource type="SpriteFrames" id=16]
+[sub_resource type="SpriteFrames" id=11]
 
 frames = [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ]
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=12]
 
 resource/name = "walk-back"
 length = 1.2
@@ -218,7 +258,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("player:frames")
 tracks/0/interp = 1
-tracks/0/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 16 ) ] }
+tracks/0/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 11 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("player:frame")
 tracks/1/interp = 1
@@ -236,13 +276,12 @@ tracks/4/path = NodePath("weapon:visibility/behind_parent")
 tracks/4/interp = 1
 tracks/4/keys = { "cont":false, "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "values":[ true, true ] }
 
-[sub_resource type="SpriteFrames" id=18]
+[sub_resource type="SpriteFrames" id=13]
 
 frames = [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ) ]
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=14]
 
-resource/name = "walk-front"
 length = 1.2
 loop = true
 step = 0.1
@@ -253,7 +292,7 @@ tracks/0/keys = { "cont":false, "times":FloatArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ), 
 tracks/1/type = "value"
 tracks/1/path = NodePath("player:frames")
 tracks/1/interp = 1
-tracks/1/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 18 ) ] }
+tracks/1/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 13 ) ] }
 tracks/2/type = "value"
 tracks/2/path = NodePath("weapon:transform/pos")
 tracks/2/interp = 1
@@ -267,11 +306,11 @@ tracks/4/path = NodePath("weapon:visibility/behind_parent")
 tracks/4/interp = 1
 tracks/4/keys = { "cont":false, "times":FloatArray( 0, 0.2, 0.6, 0.8, 1 ), "transitions":FloatArray( 1, 1, 1, 1, 1 ), "values":[ false, true, false, false, false ] }
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="SpriteFrames" id=15]
 
 frames = [ ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ) ]
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=16]
 
 length = 1.0
 loop = true
@@ -279,7 +318,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("player:frames")
 tracks/0/interp = 1
-tracks/0/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 13 ) ] }
+tracks/0/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 15 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("player:frame")
 tracks/1/interp = 1
@@ -301,7 +340,7 @@ tracks/5/path = NodePath("player:flip_h")
 tracks/5/interp = 1
 tracks/5/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ false ] }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=17]
 
 length = 1.2
 loop = true
@@ -325,18 +364,18 @@ tracks/3/keys = { "cont":true, "times":FloatArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ), "
 tracks/4/type = "value"
 tracks/4/path = NodePath("player:frames")
 tracks/4/interp = 1
-tracks/4/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 13 ) ] }
+tracks/4/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ SubResource( 15 ) ] }
 tracks/5/type = "value"
 tracks/5/path = NodePath("player:frame")
 tracks/5/interp = 1
 tracks/5/keys = { "cont":false, "times":FloatArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "values":[ 0, 1, 2, 3, 4, 5 ] }
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=18]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 9.94181, 10 )
 
-[sub_resource type="RectangleShape2D" id=20]
+[sub_resource type="RectangleShape2D" id=19]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -344,7 +383,7 @@ extents = Vector2( 10, 10 )
 [node name="Node2D" type="Node2D"]
 
 script/script = ExtResource( 1 )
-__meta__ = { "__editor_plugin_screen__":"Script", "_edit_lock_":true }
+__meta__ = { "__editor_plugin_screen__":"2D", "_edit_lock_":true }
 
 [node name="animations" type="Node2D" parent="."]
 
@@ -353,13 +392,14 @@ __meta__ = { "_edit_lock_":true }
 [node name="player" type="AnimatedSprite" parent="animations"]
 
 transform/pos = Vector2( -1.36038, -21.766 )
-frames = SubResource( 6 )
-frame = 2
+frames = SubResource( 4 )
+frame = 1
 
 [node name="weapon" type="Sprite" parent="animations"]
 
-transform/pos = Vector2( -17.8098, -9.67618 )
-transform/rot = 117.438
+visibility/behind_parent = true
+transform/pos = Vector2( 8.38116, -16.5162 )
+transform/rot = -103.544
 transform/scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 7 )
 offset = Vector2( -0.14328, -43.135 )
@@ -371,13 +411,13 @@ playback/default_blend_time = 0.0
 root/root = NodePath("..")
 anims/attack-back = SubResource( 3 )
 anims/attack-front = SubResource( 5 )
-anims/attack-left = SubResource( 7 )
-anims/attack-right = SubResource( 9 )
-anims/idle-front = SubResource( 11 )
-anims/walk-back = SubResource( 17 )
-anims/walk-front = SubResource( 12 )
-anims/walk-left = SubResource( 14 )
-anims/walk-right = SubResource( 15 )
+anims/attack-left = SubResource( 6 )
+anims/attack-right = SubResource( 8 )
+anims/idle-front = SubResource( 10 )
+anims/walk-back = SubResource( 12 )
+anims/walk-front = SubResource( 14 )
+anims/walk-left = SubResource( 16 )
+anims/walk-right = SubResource( 17 )
 playback/active = true
 playback/speed = 2.0
 blend_times = [  ]
@@ -386,8 +426,8 @@ autoplay = "idle-front"
 [node name="weaponbox" type="Area2D" parent="."]
 
 input/pickable = false
-shapes/0/shape = SubResource( 19 )
-shapes/0/transform = Matrix32( 1, -0, 0, 1, -39.528, -9.75024 )
+shapes/0/shape = SubResource( 18 )
+shapes/0/transform = Matrix32( 2.06956, -0, 0, 2.45967, 13.6238, -15.1907 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -396,15 +436,17 @@ angular_damp = 1.0
 
 [node name="shape" type="CollisionShape2D" parent="weaponbox"]
 
-transform/pos = Vector2( -39.528, -9.75024 )
-shape = SubResource( 19 )
+transform/pos = Vector2( 13.6238, -15.1907 )
+transform/scale = Vector2( 2.06956, 2.45967 )
+shape = SubResource( 18 )
 trigger = false
 _update_shape_index = 0
 
 [node name="collectbox" type="Area2D" parent="."]
 
+transform/pos = Vector2( 0.487671, 0 )
 input/pickable = true
-shapes/0/shape = SubResource( 20 )
+shapes/0/shape = SubResource( 19 )
 shapes/0/transform = Matrix32( 1.94599, -0, 0, 2.28935, -1.86075, -20.3949 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -416,7 +458,7 @@ angular_damp = 1.0
 
 transform/pos = Vector2( -1.86075, -20.3949 )
 transform/scale = Vector2( 1.94599, 2.28935 )
-shape = SubResource( 20 )
+shape = SubResource( 19 )
 trigger = false
 _update_shape_index = 0
 

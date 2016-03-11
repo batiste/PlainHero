@@ -9,7 +9,6 @@ var collectbox
 func _ready():
 	animations = get_node("animations/AnimationPlayer")
 	weapon = get_node("animations/weapon")
-	#change_weapon()
 	weaponbox = get_node("weaponbox")
 	collectbox = get_node("collectbox")
 	set_process(true)
@@ -23,10 +22,10 @@ func _process(delta):
 func hit():
 	for body in weaponbox.get_overlapping_bodies():
 		if(body.has_method("take_damage")):
-			body.take_damage(weapon_damage, self)
+			body.take_damage(weapon_damage, self.get_parent())
 	for body in weaponbox.get_overlapping_areas():
 		if(body.has_method("take_damage")):
-			body.take_damage(weapon_damage, self)
+			body.take_damage(weapon_damage, self.get_parent())
 	
 func change_weapon():
 	var hammer = ResourceLoader.load("misc/weapons/dummy-hammer2.tex")
