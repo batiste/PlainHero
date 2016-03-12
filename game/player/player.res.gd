@@ -3,7 +3,7 @@ extends Node2D
 var animations
 var weapon
 var weaponbox
-var weapon_damage = 2
+var weapon_damage = 3
 var collectbox
 var facing_direction = Vector2(0, 1)
 var pos
@@ -56,6 +56,7 @@ func _fixed_process(delta):
 		update_walk(facing_direction)
 
 func hit():
+	
 	for body in weaponbox.get_overlapping_bodies():
 		if(body.has_method("take_damage")):
 			body.take_damage(weapon_damage, self.get_parent())

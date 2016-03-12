@@ -7,7 +7,7 @@ var elapsed = 0
 var health = 10
 var label
 var root
-var game
+var npc
 var anim
 
 func _ready():
@@ -16,8 +16,7 @@ func _ready():
 	label.set_text(str(health))
 	root = get_tree().get_root()
 	var intro = root.get_node("intro")
-	game = intro.get_node("Game")
-	game = game.get_children()[0]
+	npc = intro.get_node("Game/game/npc")
 	anim = get_node("AnimationPlayer")
 
 func _fixed_process(delta):
@@ -28,7 +27,7 @@ func _fixed_process(delta):
 		if velocity.length() > normal_velocity:
 			var body = get_collider()
 			if(body.has_method("take_damage")):
-				body.take_damage(2, self)
+				body.take_damage(1, self)
 		revert_motion()
 		velocity = - velocity / 2
 		
@@ -43,7 +42,7 @@ func _fixed_process(delta):
 func take_damage(v, from):
 	health = health - 1
 	if(health < 1):
-		game.remove_child(self)
+		npc.remove_child(self)
 		return
 	print("take-damage ", v, from)
 	label.set_text(str(v))
