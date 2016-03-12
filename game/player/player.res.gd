@@ -5,20 +5,56 @@ var weapon
 var weaponbox
 var weapon_damage = 2
 var collectbox
+var facing_direction = Vector2(0, 1)
+var pos
 
 func _ready():
 	animations = get_node("animations/AnimationPlayer")
 	weapon = get_node("animations/weapon")
 	weaponbox = get_node("weaponbox")
 	collectbox = get_node("collectbox")
-	set_process(true)
+	set_fixed_process(true)
 	
-func _process(delta):
+func _fixed_process(delta):
 	for body in collectbox.get_overlapping_bodies():
 		if(body.has_method("collect")):
 			body.collect()
-		
 	
+	var direction = Vector2(0, 0)
+	if Input.is_action_pressed("ui_left"):
+		direction = direction + Vector2(-1, 0)
+	if Input.is_action_pressed("ui_right"):
+		direction = direction + Vector2(1, 0)
+	if Input.is_action_pressed("ui_up"):
+		direction = direction + Vector2(0, -1)
+	if Input.is_action_pressed("ui_down"):
+		direction = direction + Vector2(0, 1)
+	
+	direction = direction.normalized()
+	
+	if direction != Vector2(0, 0):
+		facing_direction = direction
+	
+	var speed = 180
+	
+	var motion = direction * speed * delta
+	move(motion)
+	
+	if is_colliding():
+		revert_motion()
+		var n = get_collision_normal()
+		var slide = n.slide(direction).normalized() * speed * delta
+		move(slide)
+	
+	pos = get_pos()
+	
+	if Input.is_action_pressed("ui_accept"):
+		update_attack(facing_direction)
+	elif direction == Vector2(0, 0):
+		update_idle(facing_direction)
+	else:
+		update_walk(facing_direction)
+
 func hit():
 	for body in weaponbox.get_overlapping_bodies():
 		if(body.has_method("take_damage")):
