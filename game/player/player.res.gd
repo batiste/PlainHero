@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 
 var animations
 var weapon
@@ -7,6 +7,9 @@ var weapon_damage = 3
 var collectbox
 var facing_direction = Vector2(0, 1)
 var pos
+var health = 100
+var healthBar
+var anim
 
 func _ready():
 	animations = get_node("animations/AnimationPlayer")
@@ -14,6 +17,14 @@ func _ready():
 	weaponbox = get_node("weaponbox")
 	collectbox = get_node("collectbox")
 	set_fixed_process(true)
+
+
+	var root = get_tree().get_root()
+	var intro = root.get_node("intro")
+	
+	healthBar = intro.get_node("Game/game/Health/VBoxContainer/ProgressBar")
+	anim = get_node("AnimationPlayer")
+
 	
 func _fixed_process(delta):
 	for body in collectbox.get_overlapping_bodies():
@@ -42,6 +53,7 @@ func _fixed_process(delta):
 	
 	if is_colliding():
 		revert_motion()
+		var collider = get_collider()
 		var n = get_collision_normal()
 		var slide = n.slide(direction).normalized() * speed * delta
 		move(slide)
@@ -63,7 +75,13 @@ func hit():
 	for body in weaponbox.get_overlapping_areas():
 		if(body.has_method("take_damage")):
 			body.take_damage(weapon_damage, self.get_parent())
-	
+
+func take_damage(v, from):
+	if from == self:
+		return
+	health = health - v
+	healthBar.set_value(health)
+
 func change_weapon():
 	var hammer = ResourceLoader.load("misc/weapons/dummy-hammer2.tex")
 	weapon.set_texture(hammer)
