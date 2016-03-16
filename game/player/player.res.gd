@@ -18,13 +18,11 @@ func _ready():
 	collectbox = get_node("collectbox")
 	set_fixed_process(true)
 
-
 	var root = get_tree().get_root()
 	var intro = root.get_node("intro")
 	
 	healthBar = intro.get_node("Game/game/Health/VBoxContainer/ProgressBar")
 	anim = get_node("AnimationPlayer")
-
 	
 func _fixed_process(delta):
 	for body in collectbox.get_overlapping_bodies():
@@ -71,15 +69,17 @@ func hit():
 	
 	for body in weaponbox.get_overlapping_bodies():
 		if(body.has_method("take_damage")):
-			body.take_damage(weapon_damage, self.get_parent())
+			body.take_damage(weapon_damage, self)
 	for body in weaponbox.get_overlapping_areas():
 		if(body.has_method("take_damage")):
-			body.take_damage(weapon_damage, self.get_parent())
+			body.take_damage(weapon_damage, self)
 
 func take_damage(v, from):
 	if from == self:
 		return
 	health = health - v
+	get_node("health").set_text(str(v))
+	get_node("AnimationPlayer").play("damage")
 	healthBar.set_value(health)
 
 func change_weapon():
@@ -104,7 +104,7 @@ func update_walk(direction):
 	update('walk-' + get_anim_direction(direction))
 
 func update_idle(direction):
-	update('idle-front')
+	update('idle-' + get_anim_direction(direction))
 	
 func update(anim_name):
 	
