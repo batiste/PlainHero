@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://npc/ennemy.gd" type="Script" id=1]
 [ext_resource path="res://npc/blob-1.tex" type="Texture" id=2]
 [ext_resource path="res://scripts/tree.gd" type="Script" id=3]
 [ext_resource path="res://misc/general_font.fnt" type="Font" id=4]
+[ext_resource path="res://sound/squish2.smp" type="Sample" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -28,6 +29,10 @@ tracks/2/type = "value"
 tracks/2/path = NodePath("Label:visibility/opacity")
 tracks/2/interp = 1
 tracks/2/keys = { "cont":true, "times":FloatArray( 0, 2 ), "transitions":FloatArray( 1, 1 ), "values":[ 1.0, 0.0 ] }
+
+[sub_resource type="SampleLibrary" id=3]
+
+samples/squish2 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 5 ) }
 
 [node name="blob1" type="KinematicBody2D"]
 
@@ -102,5 +107,16 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 3 )
+config/pitch_random = 0.0
 
 

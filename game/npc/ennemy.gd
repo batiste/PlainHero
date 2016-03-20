@@ -40,15 +40,18 @@ func _fixed_process(delta):
 		velocity = velocity / 1.2
 
 func take_damage(v, from):
+	get_node("SamplePlayer2D").play("squish2")
 	health = health - 1
 	if(health < 1):
 		npc.remove_child(self)
 		return
-	print("take-damage ", v, from)
 	label.set_text(str(v))
 	anim.play("damage")
 	var v = from.get_pos()
 	v += Vector2(0, -10)
 	var vect =  get_pos() - v
-	print(vect, vect.normalized())
 	velocity = vect.normalized() * 4 * normal_velocity
+	
+func hurt_when_touched(to):
+	to.take_damage(1, self)
+	

@@ -7,9 +7,12 @@ var weapon_damage = 3
 var collectbox
 var facing_direction = Vector2(0, 1)
 var pos
-var health = 100
+var health = 20
 var healthBar
+var maxHealth = 20
 var anim
+
+var velocity = Vector2(0, 0)
 
 func _ready():
 	animations = get_node("animations/AnimationPlayer")
@@ -22,6 +25,7 @@ func _ready():
 	var intro = root.get_node("intro")
 	
 	healthBar = intro.get_node("Game/game/Health/VBoxContainer/ProgressBar")
+	healthBar.set_max(maxHealth)
 	anim = get_node("AnimationPlayer")
 	
 func _fixed_process(delta):
@@ -43,15 +47,27 @@ func _fixed_process(delta):
 	
 	if direction != Vector2(0, 0):
 		facing_direction = direction
+	else:
+		velocity = velocity / 3.0
 	
-	var speed = 180
+	var max_speed = 3
+	var acc = 15
 	
-	var motion = direction * speed * delta
+	velocity += direction * acc * delta
+	if velocity.length() > max_speed:
+		velocity = velocity.normalized() * max_speed
+	
+	var motion = velocity
+	var speed = motion.length()
 	move(motion)
 	
 	if is_colliding():
+		velocity = Vector2(0, 0)
 		revert_motion()
 		var collider = get_collider()
+		if(collider.has_method("hurt_when_touched")):
+			collider.hurt_when_touched(self)
+			repulse(collider)
 		var n = get_collision_normal()
 		var slide = n.slide(direction).normalized() * speed * delta
 		move(slide)
@@ -65,6 +81,11 @@ func _fixed_process(delta):
 	else:
 		update_walk(facing_direction)
 
+func repulse(from):
+	var v = from.get_pos()
+	var vect =  get_pos() - v
+	velocity +=vect.normalized() * 4
+
 func hit():
 	
 	for body in weaponbox.get_overlapping_bodies():
@@ -73,6 +94,9 @@ func hit():
 	for body in weaponbox.get_overlapping_areas():
 		if(body.has_method("take_damage")):
 			body.take_damage(weapon_damage, self)
+			
+func swish():
+	get_node("SamplePlayer2D").play("swish")
 
 func take_damage(v, from):
 	if from == self:
@@ -111,6 +135,6 @@ func update(anim_name):
 	var current = animations.get_current_animation()
 	if current.basename() == anim_name:
 		return
-		
+	
 	animations.play(anim_name)
 	
