@@ -48,10 +48,19 @@ func _fixed_process(delta):
 	if direction != Vector2(0, 0):
 		facing_direction = direction
 	else:
-		velocity = velocity / 3.0
+		velocity = velocity / 1.5
 	
 	var max_speed = 3
 	var acc = 15
+	
+	if direction.x < 0 and velocity.x > 0:
+		velocity.x = 0
+	if direction.x > 0 and velocity.x < 0:
+		velocity.x = 0
+	if direction.y < 0 and velocity.y > 0:
+		velocity.y = 0
+	if direction.y > 0 and velocity.y < 0:
+		velocity.y = 0
 	
 	velocity += direction * acc * delta
 	if velocity.length() > max_speed:
@@ -105,20 +114,23 @@ func take_damage(v, from):
 	get_node("health").set_text(str(v))
 	get_node("AnimationPlayer").play("damage")
 	healthBar.set_value(health)
+	#change_weapon()
 
 func change_weapon():
 	var hammer = ResourceLoader.load("misc/weapons/dummy-hammer2.tex")
 	weapon.set_texture(hammer)
 	
 func get_anim_direction(direction):
-	if direction.x < 0:
-		return "left"
-	if direction.x > 0:
-		return "right"
-	if direction.y > 0:
-		return "front"
-	if direction.y < 0:
-		return "back"
+	if(abs(direction.x) >= abs(direction.y)):
+		if direction.x < 0:
+			return "left"
+		if direction.x > 0:
+			return "right"
+	else:
+		if direction.y > 0:
+			return "front"
+		if direction.y < 0:
+			return "back"
 	return "front"
 	
 func update_attack(direction):
@@ -133,7 +145,10 @@ func update_idle(direction):
 func update(anim_name):
 	
 	var current = animations.get_current_animation()
-	if current.basename() == anim_name:
+	if current.substr(0, 3) == "att" and animations.is_playing():
+		return
+	
+	if animations.is_playing() and current.basename() == anim_name:
 		return
 	
 	animations.play(anim_name)
