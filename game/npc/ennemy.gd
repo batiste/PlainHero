@@ -2,13 +2,15 @@
 extends KinematicBody2D
 
 var velocity = Vector2(0, 0)
-var normal_velocity = 100
+var normal_velocity = 300
 var elapsed = 0
 var health = 10
 var label
 var root
 var npc
 var anim
+var state = "idle"
+var animations
 
 func _ready():
 	set_fixed_process(true)
@@ -18,7 +20,41 @@ func _ready():
 	var intro = root.get_node("intro")
 	npc = intro.get_node("Game/game/npc")
 	anim = get_node("AnimationPlayer")
+	animations = get_node("animations/AnimationPlayer")
 
+var next_to_be_played = "idle"
+
+func land():
+	next_to_be_played = "idle"
+	velocity = Vector2(0, 0)
+
+func destroy():
+	npc.remove_child(self)
+
+func jump():
+	var direction = Vector2(randf() - 0.5, randf() - 0.5).normalized()
+	velocity = normal_velocity * direction
+
+func attack_left():
+	var direction = Vector2(-0.5, randf() - 0.5).normalized()
+	velocity = normal_velocity * direction * 1.5
+	
+func attack_right():
+	var direction = Vector2(0.5, randf() - 0.5).normalized()
+	velocity = normal_velocity * direction * 1.5
+	
+func bored():
+	if randf() < 0.04:
+		next_to_be_played = "attack-left"
+		return
+	if randf() < 0.04:
+		next_to_be_played = "attack-right"
+		return
+	if randf() < 0.2:
+		next_to_be_played = "move"
+		return
+
+		
 func _fixed_process(delta):
 	move(velocity * delta)
 	elapsed += delta
@@ -30,27 +66,33 @@ func _fixed_process(delta):
 				body.take_damage(1, self)
 		revert_motion()
 		velocity = - velocity / 2
-		
-	var v = normal_velocity / 4.0 * Vector2(randf() - 0.5, randf() - 0.5)
-	velocity = velocity + v
-	
-	if velocity.length() > normal_velocity:
-		velocity = velocity / 1.1
-	elif int(elapsed) % 5 == 0:
+	else:
 		velocity = velocity / 1.2
+		
+	var anim_name = animations.get_current_animation()
+	if anim_name != next_to_be_played and anim_name != "death":
+		animations.play(next_to_be_played)
 
 func take_damage(v, from):
+	if(health < 1):
+		return
+	
 	get_node("SamplePlayer2D").play("squish2")
 	health = health - 1
-	if(health < 1):
-		npc.remove_child(self)
-		return
+		
 	label.set_text(str(v))
+	next_to_be_played = "take-damage"
 	anim.play("damage")
 	var v = from.get_pos()
 	v += Vector2(0, -10)
 	var vect =  get_pos() - v
-	velocity = vect.normalized() * 4 * normal_velocity
+	velocity = vect.normalized() * 2 * normal_velocity
+
+	if(health < 1):
+		next_to_be_played = "death"
+		animations.play(next_to_be_played)
+		get_node("SamplePlayer2D").play("explode")
+		velocity = velocity / 1.5
 	
 func hurt_when_touched(to):
 	to.take_damage(1, self)
