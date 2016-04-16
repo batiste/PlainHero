@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=1]
+[gd_scene load_steps=71 format=1]
 
 [ext_resource path="res://player/player.res.gd" type="Script" id=1]
 [ext_resource path="res://misc/shadow.tex" type="Texture" id=2]
@@ -40,10 +40,9 @@
 [ext_resource path="res://player/walk-side/walk_side-4.tex" type="Texture" id=38]
 [ext_resource path="res://player/walk-side/walk_side-5.tex" type="Texture" id=39]
 [ext_resource path="res://player/walk-side/walk_side-6.tex" type="Texture" id=40]
-[ext_resource path="res://misc/general_font.fnt" type="Font" id=41]
-[ext_resource path="res://sound/swish.smp" type="Sample" id=42]
-[ext_resource path="res://misc/smoke.tex" type="Texture" id=43]
-[ext_resource path="res://misc/torch_coloramp.res" type="ColorRamp" id=44]
+[ext_resource path="res://sound/swish.smp" type="Sample" id=41]
+[ext_resource path="res://misc/smoke.tex" type="Texture" id=42]
+[ext_resource path="res://misc/torch_coloramp.res" type="ColorRamp" id=43]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -514,7 +513,7 @@ step = 0.1
 
 [sub_resource type="SampleLibrary" id=27]
 
-samples/swish = { "db":0.0, "pitch":1.0, "sample":ExtResource( 42 ) }
+samples/swish = { "db":0.0, "pitch":1.0, "sample":ExtResource( 41 ) }
 
 [node name="Player" type="KinematicBody2D"]
 
@@ -526,7 +525,7 @@ collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
-__meta__ = { "__editor_plugin_screen__":"2D", "_edit_lock_":true }
+__meta__ = { "__editor_plugin_screen__":"Script", "_edit_lock_":true }
 
 [node name="shadow" type="Sprite" parent="."]
 
@@ -578,7 +577,7 @@ autoplay = ""
 
 input/pickable = false
 shapes/0/shape = SubResource( 24 )
-shapes/0/transform = Matrix32( 2.06956, -0, 0, 2.45967, 10.4461, -42.9957 )
+shapes/0/transform = Matrix32( 2.06956, 0, 0, 2.45967, 10.4461, -42.9957 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -644,26 +643,6 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="health" type="Label" parent="."]
-
-visibility/opacity = 0.0
-margin/left = -46.0
-margin/top = -66.0
-margin/right = 46.0
-margin/bottom = -49.0
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-custom_fonts/font = ExtResource( 41 )
-custom_colors/font_color = Color( 0.765625, 0, 0, 1 )
-custom_constants/shadow_offset_x = 10
-custom_constants/shadow_offset_y = 10
-text = "Health"
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 playback/process_mode = 1
@@ -695,7 +674,7 @@ config/amount = 5
 config/lifetime = 1.0
 config/local_space = false
 config/flip_h = true
-config/texture = ExtResource( 43 )
+config/texture = ExtResource( 42 )
 params/direction = 180.0
 params/spread = 180.0
 params/linear_velocity = 20.0
@@ -740,6 +719,6 @@ params/final_size = 2.0
 params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
-color/color_ramp = ExtResource( 44 )
+color/color_ramp = ExtResource( 43 )
 
 

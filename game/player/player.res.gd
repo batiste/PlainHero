@@ -8,9 +8,15 @@ var collectbox
 var facing_direction = Vector2(0, 1)
 var pos
 var health = 20
-var healthBar
-var maxHealth = 20
+var max_health = 20
+var health_bar
+var xp = 0
+var max_xp = 100
+var xp_bar
+
 var anim
+var max_speed = 2.0
+var acc = 10
 
 var velocity = Vector2(0, 0)
 
@@ -24,9 +30,21 @@ func _ready():
 	var root = get_tree().get_root()
 	var intro = root.get_node("intro")
 	
-	healthBar = intro.get_node("Game/game/Health/VBoxContainer/ProgressBar")
-	healthBar.set_max(maxHealth)
+	health_bar = intro.get_node("Game/game/Health/VBoxContainer/Health")
+	health_bar.set_value(health)
+	health_bar.set_max(max_health)
+	
+	xp_bar = intro.get_node("Game/game/Health/VBoxContainer/XP")
+	xp_bar.set_value(xp)
+	xp_bar.set_max(max_xp)
+	
 	anim = get_node("AnimationPlayer")
+	
+func increase_xp(v):
+	xp = xp + v
+	print(xp)
+	xp_bar.set_value(xp)
+	xp_bar.set_max(100)
 	
 func _fixed_process(delta):
 	for body in collectbox.get_overlapping_bodies():
@@ -50,21 +68,20 @@ func _fixed_process(delta):
 	else:
 		velocity = velocity / 1.5
 	
-	var max_speed = 3
 	var acc = 15
 	
-	if direction.x < 0 and velocity.x > 0:
-		velocity.x = 0
-	if direction.x > 0 and velocity.x < 0:
-		velocity.x = 0
-	if direction.y < 0 and velocity.y > 0:
-		velocity.y = 0
-	if direction.y > 0 and velocity.y < 0:
-		velocity.y = 0
+	#if direction.x < 0 and velocity.x > 0:
+	#	velocity.x = 0
+	#if direction.x > 0 and velocity.x < 0:
+	#	velocity.x = 0
+	#if direction.y < 0 and velocity.y > 0:
+	#	velocity.y = 0
+	#if direction.y > 0 and velocity.y < 0:
+	#	velocity.y = 0
 	
 	velocity += direction * acc * delta
 	if velocity.length() > max_speed:
-		velocity = velocity.normalized() * max_speed
+		velocity = velocity / 1.1
 	
 	var motion = velocity
 	var speed = motion.length()
@@ -93,7 +110,7 @@ func _fixed_process(delta):
 func repulse(from):
 	var v = from.get_pos()
 	var vect =  get_pos() - v
-	velocity +=vect.normalized() * 4
+	velocity += vect.normalized() * 3
 
 func hit():
 	
@@ -110,10 +127,10 @@ func swish():
 func take_damage(v, from):
 	if from == self:
 		return
+	repulse(from)
 	health = health - v
-	get_node("health").set_text(str(v))
 	get_node("AnimationPlayer").play("damage")
-	healthBar.set_value(health)
+	health_bar.set_value(health)
 	#change_weapon()
 
 func change_weapon():

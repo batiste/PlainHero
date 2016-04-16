@@ -11,6 +11,7 @@ var npc
 var anim
 var state = "idle"
 var animations
+var destroyed_by
 
 func _ready():
 	set_fixed_process(true)
@@ -29,19 +30,25 @@ func land():
 	velocity = Vector2(0, 0)
 
 func destroy():
+	if(destroyed_by and destroyed_by.has_method("increase_xp")):
+		print("Increse XP")
+		destroyed_by.increase_xp(2)
 	npc.remove_child(self)
+
 
 func jump():
 	var direction = Vector2(randf() - 0.5, randf() - 0.5).normalized()
 	velocity = normal_velocity * direction
 
+var attack_speed = normal_velocity * 2
+
 func attack_left():
 	var direction = Vector2(-0.5, randf() - 0.5).normalized()
-	velocity = normal_velocity * direction * 1.5
+	velocity = attack_speed * direction
 	
 func attack_right():
 	var direction = Vector2(0.5, randf() - 0.5).normalized()
-	velocity = normal_velocity * direction * 1.5
+	velocity = attack_speed * direction
 	
 func bored():
 	if randf() < 0.04:
@@ -93,6 +100,7 @@ func take_damage(v, from):
 		animations.play(next_to_be_played)
 		get_node("SamplePlayer2D").play("explode")
 		velocity = velocity / 1.5
+		destroyed_by = from
 	
 func hurt_when_touched(to):
 	to.take_damage(1, self)
